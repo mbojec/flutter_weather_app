@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weather_app/constants.dart';
 import 'package:weather_app/view/details.dart';
-import 'package:weather_app/view/search.dart';
+import 'package:weather_app/view/search/screen.dart';
 import 'package:weather_app/view/weather.dart';
 
 class Routes {
