@@ -5,10 +5,13 @@ import 'package:weather_app/blocs/search_history/cubit.dart';
 import 'package:weather_app/blocs/search_weather/cubit.dart';
 import 'package:weather_app/blocs/search_weather/state_search.dart';
 import 'package:weather_app/constants.dart';
+import 'package:weather_app/models/current/current_weather/current_weather.dart';
+import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
 import 'package:weather_app/models/search_item/search_item.dart';
 import 'package:weather_app/view/search/components/search_status_banner.dart';
 import 'package:weather_app/view/search/components/search_bar.dart';
 import 'package:weather_app/view/search/components/search_history.dart';
+import 'package:weather_app/view/weather.dart';
 
 class SearchScreen extends StatelessWidget {
   @override
@@ -17,11 +20,16 @@ class SearchScreen extends StatelessWidget {
     return BlocListener<SearchCubit, SearchState>(
       listener: (BuildContext context, SearchState state) {
         state.maybeWhen(
-            success: (String cityName) {
+            success:
+                (CurrentWeather currentWeather, DetailWeather detailWeather) {
               context.read<SearchHistoryCubit>().addNewValueToSearchHistory(
-                    SearchItem(cityName: cityName),
+                  context.read<SearchCubit>().currentSearchItem
                   );
-              Navigator.of(context).pushNamed(RouteList.weather).then((_) {
+              Navigator.of(context)
+                  .pushNamed(RouteList.weather,
+                      arguments:
+                          WeatherScreenArgs(currentWeather, detailWeather))
+                  .then((_) {
                 context.read<SearchHistoryCubit>().fetchSearchHistory();
               });
             },

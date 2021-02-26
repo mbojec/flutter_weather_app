@@ -19,9 +19,10 @@ class _$SearchStateTearOff {
   }
 
 // ignore: unused_element
-  Success success(String cityName) {
+  Success success(CurrentWeather currentWeather, DetailWeather detailWeather) {
     return Success(
-      cityName,
+      currentWeather,
+      detailWeather,
     );
   }
 
@@ -52,7 +53,9 @@ mixin _$SearchState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(String cityName),
+    @required
+        TResult success(
+            CurrentWeather currentWeather, DetailWeather detailWeather),
     @required TResult loading(),
     @required TResult clear(),
     @required TResult error(String error),
@@ -60,7 +63,7 @@ mixin _$SearchState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(String cityName),
+    TResult success(CurrentWeather currentWeather, DetailWeather detailWeather),
     TResult loading(),
     TResult clear(),
     TResult error(String error),
@@ -138,7 +141,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(String cityName),
+    @required
+        TResult success(
+            CurrentWeather currentWeather, DetailWeather detailWeather),
     @required TResult loading(),
     @required TResult clear(),
     @required TResult error(String error),
@@ -155,7 +160,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(String cityName),
+    TResult success(CurrentWeather currentWeather, DetailWeather detailWeather),
     TResult loading(),
     TResult clear(),
     TResult error(String error),
@@ -211,7 +216,7 @@ abstract class Initial implements SearchState {
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call({String cityName});
+  $Res call({CurrentWeather currentWeather, DetailWeather detailWeather});
 }
 
 /// @nodoc
@@ -225,38 +230,53 @@ class _$SuccessCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object cityName = freezed,
+    Object currentWeather = freezed,
+    Object detailWeather = freezed,
   }) {
     return _then(Success(
-      cityName == freezed ? _value.cityName : cityName as String,
+      currentWeather == freezed
+          ? _value.currentWeather
+          : currentWeather as CurrentWeather,
+      detailWeather == freezed
+          ? _value.detailWeather
+          : detailWeather as DetailWeather,
     ));
   }
 }
 
 /// @nodoc
 class _$Success implements Success {
-  const _$Success(this.cityName) : assert(cityName != null);
+  const _$Success(this.currentWeather, this.detailWeather)
+      : assert(currentWeather != null),
+        assert(detailWeather != null);
 
   @override
-  final String cityName;
+  final CurrentWeather currentWeather;
+  @override
+  final DetailWeather detailWeather;
 
   @override
   String toString() {
-    return 'SearchState.success(cityName: $cityName)';
+    return 'SearchState.success(currentWeather: $currentWeather, detailWeather: $detailWeather)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Success &&
-            (identical(other.cityName, cityName) ||
+            (identical(other.currentWeather, currentWeather) ||
                 const DeepCollectionEquality()
-                    .equals(other.cityName, cityName)));
+                    .equals(other.currentWeather, currentWeather)) &&
+            (identical(other.detailWeather, detailWeather) ||
+                const DeepCollectionEquality()
+                    .equals(other.detailWeather, detailWeather)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(cityName);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(currentWeather) ^
+      const DeepCollectionEquality().hash(detailWeather);
 
   @JsonKey(ignore: true)
   @override
@@ -267,7 +287,9 @@ class _$Success implements Success {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(String cityName),
+    @required
+        TResult success(
+            CurrentWeather currentWeather, DetailWeather detailWeather),
     @required TResult loading(),
     @required TResult clear(),
     @required TResult error(String error),
@@ -277,14 +299,14 @@ class _$Success implements Success {
     assert(loading != null);
     assert(clear != null);
     assert(error != null);
-    return success(cityName);
+    return success(currentWeather, detailWeather);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(String cityName),
+    TResult success(CurrentWeather currentWeather, DetailWeather detailWeather),
     TResult loading(),
     TResult clear(),
     TResult error(String error),
@@ -292,7 +314,7 @@ class _$Success implements Success {
   }) {
     assert(orElse != null);
     if (success != null) {
-      return success(cityName);
+      return success(currentWeather, detailWeather);
     }
     return orElse();
   }
@@ -333,9 +355,11 @@ class _$Success implements Success {
 }
 
 abstract class Success implements SearchState {
-  const factory Success(String cityName) = _$Success;
+  const factory Success(
+      CurrentWeather currentWeather, DetailWeather detailWeather) = _$Success;
 
-  String get cityName;
+  CurrentWeather get currentWeather;
+  DetailWeather get detailWeather;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith;
 }
@@ -377,7 +401,9 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(String cityName),
+    @required
+        TResult success(
+            CurrentWeather currentWeather, DetailWeather detailWeather),
     @required TResult loading(),
     @required TResult clear(),
     @required TResult error(String error),
@@ -394,7 +420,7 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(String cityName),
+    TResult success(CurrentWeather currentWeather, DetailWeather detailWeather),
     TResult loading(),
     TResult clear(),
     TResult error(String error),
@@ -483,7 +509,9 @@ class _$Clear implements Clear {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(String cityName),
+    @required
+        TResult success(
+            CurrentWeather currentWeather, DetailWeather detailWeather),
     @required TResult loading(),
     @required TResult clear(),
     @required TResult error(String error),
@@ -500,7 +528,7 @@ class _$Clear implements Clear {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(String cityName),
+    TResult success(CurrentWeather currentWeather, DetailWeather detailWeather),
     TResult loading(),
     TResult clear(),
     TResult error(String error),
@@ -611,7 +639,9 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(String cityName),
+    @required
+        TResult success(
+            CurrentWeather currentWeather, DetailWeather detailWeather),
     @required TResult loading(),
     @required TResult clear(),
     @required TResult error(String error),
@@ -628,7 +658,7 @@ class _$Error implements Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(String cityName),
+    TResult success(CurrentWeather currentWeather, DetailWeather detailWeather),
     TResult loading(),
     TResult clear(),
     TResult error(String error),

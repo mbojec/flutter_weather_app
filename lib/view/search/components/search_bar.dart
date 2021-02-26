@@ -6,7 +6,10 @@ import 'package:weather_app/constants.dart';
 import 'package:weather_app/common/style.dart';
 import 'package:weather_app/common/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:weather_app/main.dart';
+import 'package:weather_app/models/current/current_weather/current_weather.dart';
+import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/models/search_item/search_item.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -35,69 +38,75 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SearchCubit, SearchState>(
-        listener: (BuildContext context, SearchState state){
-          state.maybeWhen(
-              success: (String cityName) {
-                _controller.clear();
-              },
-              orElse: () {});
-        },
-    child: Container(
-      height: Dimensions.searchBarHeight,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: kLightGrey,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      margin: const EdgeInsets.all(Dimensions.margin),
-      child: Row(
-        children: <Widget>[
-          const Icon(
-            Icons.search,
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: TextField(
-              decoration: searchBarTextFieldStyle(),
-              controller: _controller,
-              focusNode: _focusNode,
-              keyboardType: TextInputType.text,
-              textCapitalization: TextCapitalization.words,
-              onSubmitted: (String value) {
-                context.read<SearchCubit>().search(cityName: value);
-              },
-              onChanged: (String value) {
-                if (value.isEmpty || value.length == 1) {
-                  setState(() {});
-                }
-              },
+      listener: (BuildContext context, SearchState state) {
+        state.maybeWhen(
+            success:
+                (CurrentWeather currentWeather, DetailWeather detailWeather) {
+              _controller.clear();
+            },
+            orElse: () {});
+      },
+      child: Container(
+        height: Dimensions.searchBarHeight,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: kLightGrey,
+          borderRadius: BorderRadius.circular(6),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.all(Dimensions.margin),
+        child: Row(
+          children: <Widget>[
+            const Icon(
+              Icons.search,
             ),
-          ),
-          AnimatedContainer(
-            width: _widthButtonCancel,
-            duration: const Duration(milliseconds: 250),
-            child: GestureDetector(
-              onTap: () {
-                _controller.clear();
-                final FocusScopeNode _currentFocus = FocusScope.of(context);
-                if (!_currentFocus.hasPrimaryFocus) {
-                  _currentFocus.unfocus();
-                }
-                context.read<SearchCubit>().clear();
-              },
-              child: Center(
-                child: Text(
-                  'Delete',
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                decoration: searchBarTextFieldStyle(),
+                controller: _controller,
+                focusNode: _focusNode,
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.words,
+                onSubmitted: (String value) {
+                  context
+                      .read<SearchCubit>()
+                      .search(searchItem: SearchItem(cityName: value));
+                },
+                onChanged: (String value) {
+                  if (value.isEmpty || value.length == 1) {
+                    setState(() {});
+                  }
+                },
               ),
             ),
-          )
-        ],
+            AnimatedContainer(
+              width: _widthButtonCancel,
+              duration: const Duration(milliseconds: 250),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                  });
+                  _controller.clear();
+                  final FocusScopeNode _currentFocus = FocusScope.of(context);
+                  if (!_currentFocus.hasPrimaryFocus) {
+                    _currentFocus.unfocus();
+                  }
+                  context.read<SearchCubit>().clear();
+                },
+                child: Center(
+                  child: Text(
+                    'Delete',
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
-    ),);
+    );
     // return ;
   }
 }
