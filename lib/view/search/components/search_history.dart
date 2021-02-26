@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/blocs/search_history/cubit.dart';
 import 'package:weather_app/blocs/search_history/state_history.dart';
+import 'package:weather_app/blocs/search_weather/cubit.dart';
 import 'package:weather_app/common/style.dart';
 import 'package:weather_app/common/theme.dart';
 import 'package:weather_app/constants.dart';
@@ -50,8 +51,8 @@ class SearchHistory extends StatelessWidget {
                               horizontal: Dimensions.margin, vertical: 4.0),
                           child: ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed(RouteList.weather);
+                              context.read<SearchCubit>().search(
+                                  searchItem: searchHistory[index]);
                             },
                             title: Text(
                               searchHistory[index].cityName,

@@ -17,9 +17,13 @@ class Routes {
           builder: (BuildContext context) => SearchScreen(),
         );
       case RouteList.weather:
+        final WeatherScreenArgs arguments =
+            settings.arguments as WeatherScreenArgs;
         return MaterialPageRoute<WeatherScreen>(
           settings: settings,
-          builder: (BuildContext context) => WeatherScreen(),
+          builder: (BuildContext context) => WeatherScreen(
+            args: arguments,
+          ),
         );
         break;
       case RouteList.details:
