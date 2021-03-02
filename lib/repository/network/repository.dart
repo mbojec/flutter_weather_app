@@ -14,6 +14,7 @@ class NetworkRepository {
       final Map<String, dynamic> json = await DioClient().get('weather',
           queryParameters: <String, dynamic>{
             'q': cityName,
+            'units':'metric',
             'appid': Api.apiToken
           }) as Map<String, dynamic>;
       final CurrentWeather currentWeather = CurrentWeather.fromJson(json);
@@ -33,6 +34,7 @@ class NetworkRepository {
           queryParameters: <String, dynamic>{
             'lat': lat,
             'lon': lon,
+            'units':'metric',
             'appid': Api.apiToken
           }) as Map<String, dynamic>;
       final DetailWeather detailWeather = DetailWeather.fromJson(json);

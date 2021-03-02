@@ -11,7 +11,7 @@ import 'package:weather_app/models/search_item/search_item.dart';
 import 'package:weather_app/view/search/components/search_status_banner.dart';
 import 'package:weather_app/view/search/components/search_bar.dart';
 import 'package:weather_app/view/search/components/search_history.dart';
-import 'package:weather_app/view/weather.dart';
+import 'package:weather_app/view/weather/weather_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   @override
@@ -28,7 +28,7 @@ class SearchScreen extends StatelessWidget {
               Navigator.of(context)
                   .pushNamed(RouteList.weather,
                       arguments:
-                          WeatherScreenArgs(currentWeather, detailWeather))
+                          WeatherScreenArgs(currentWeather.name, detailWeather))
                   .then((_) {
                 context.read<SearchHistoryCubit>().fetchSearchHistory();
               });

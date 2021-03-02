@@ -4,7 +4,7 @@ part 'minutely.g.dart';
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Minutely {
   int dt;
-  int precipitation;
+  double precipitation;
 
   Minutely({this.dt, this.precipitation});
 
