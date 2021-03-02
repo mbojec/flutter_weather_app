@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weather_app/constants.dart';
-import 'package:weather_app/view/details.dart';
+import 'package:weather_app/view/details/details.dart';
 import 'package:weather_app/view/search/screen.dart';
-import 'package:weather_app/view/weather.dart';
+import 'package:weather_app/view/weather/weather_screen.dart';
 
 class Routes {
   static MaterialPageRoute<Widget> getRouteGenerate(RouteSettings settings) =>
@@ -27,9 +27,11 @@ class Routes {
         );
         break;
       case RouteList.details:
+        final DetailsScreenArgs arguments =
+        settings.arguments as DetailsScreenArgs;
         return MaterialPageRoute<DetailsScreen>(
           settings: settings,
-          builder: (BuildContext context) => DetailsScreen(),
+          builder: (BuildContext context) => DetailsScreen(arguments),
         );
         break;
       default:

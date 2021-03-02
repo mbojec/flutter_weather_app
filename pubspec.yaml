@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   logger: ^0.9.4
   cupertino_icons: ^1.0.0
+  intl: ^0.16.1
 
   # UI
   custom_splash: 0.0.2
@@ -42,8 +43,8 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path_android: "assets/images/ic_launcher_android.png"
-  image_path_ios: "assets/images/ic_launcher_iOS.png"
+  image_path_android: "assets/images/brand/ic_launcher_android.png"
+  image_path_ios: "assets/images/brand/ic_launcher_iOS.png"
 
 
 flutter_launcher_name:
@@ -53,4 +54,7 @@ flutter_launcher_name:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/images/brand/
+    - assets/images/weather/color/
+    - assets/images/weather/black/
+    - assets/images/weather/grey/

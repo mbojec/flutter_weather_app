@@ -9,7 +9,7 @@ part of 'minutely.dart';
 Minutely _$MinutelyFromJson(Map<String, dynamic> json) {
   return Minutely(
     dt: json['dt'] as int,
-    precipitation: json['precipitation'] as int,
+    precipitation: (json['precipitation'] as num)?.toDouble(),
   );
 }
 

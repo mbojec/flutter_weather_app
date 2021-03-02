@@ -11,33 +11,11 @@ part 'current_weather.g.dart';
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class CurrentWeather {
   Coord coord;
-  List<Weather> weather;
-  String base;
-  Main main;
-  int visibility;
-  Wind wind;
-  Clouds clouds;
-  int dt;
-  Sys sys;
-  int timezone;
-  int id;
   String name;
-  int cod;
 
   CurrentWeather(
       {this.coord,
-        this.weather,
-        this.base,
-        this.main,
-        this.visibility,
-        this.wind,
-        this.clouds,
-        this.dt,
-        this.sys,
-        this.timezone,
-        this.id,
-        this.name,
-        this.cod});
+        this.name,});
 
   factory CurrentWeather.fromJson(Map<String, dynamic> json) =>
       _$CurrentWeatherFromJson(json);

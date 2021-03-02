@@ -55,7 +55,7 @@ class _AppState extends State<App> {
               title: 'Weather App',
               theme: buildAppTheme(),
               home: CustomSplash(
-                imagePath: 'assets/images/logo.png',
+                imagePath: 'assets/images/brand/logo.png',
                 logoSize: 50,
                 duration: 2000,
                 home: SearchScreen(),
