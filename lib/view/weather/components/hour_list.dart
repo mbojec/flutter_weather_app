@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:weather_app/models/detail/hourly/hourly.dart';
+import 'package:weather_app/common/constants.dart';
+import 'package:weather_app/models/weather/hourly/hourly.dart';
 import 'package:weather_app/view/weather/components/hour_tag.dart';
 
 class HourList extends StatefulWidget {
@@ -18,11 +19,12 @@ class _HourListState extends State<HourList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 125.0,
+      height: HourTagSize.height,
       child: NotificationListener<ScrollUpdateNotification>(
         onNotification: (ScrollUpdateNotification notification) {
           setState(() {
-            position = (notification.metrics.pixels / 70.0).round();
+            position =
+                (notification.metrics.pixels / HourTagSize.width).round();
           });
           return true;
         },

@@ -1,14 +1,14 @@
-import 'package:weather_app/constants.dart';
+import 'package:weather_app/common/constants.dart';
 import 'package:weather_app/main.dart';
-import 'package:weather_app/models/current/current_weather/current_weather.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/models/city/city_data/city_data.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 import 'package:weather_app/repository/network/api_result.dart';
 import 'package:weather_app/repository/network/dio_client.dart';
 import 'package:weather_app/repository/network/network_exceptions.dart';
 
 class NetworkRepository {
 
-  Future<ApiResult<CurrentWeather>> fetchCurrentWeatherData(
+  Future<ApiResult<CityData>> fetchCityData(
       String cityName) async {
     try {
       final Map<String, dynamic> json = await DioClient().get('weather',
@@ -17,17 +17,17 @@ class NetworkRepository {
             'units':'metric',
             'appid': Api.apiToken
           }) as Map<String, dynamic>;
-      final CurrentWeather currentWeather = CurrentWeather.fromJson(json);
-      return ApiResult<CurrentWeather>.success(data: currentWeather);
+      final CityData currentWeather = CityData.fromJson(json);
+      return ApiResult<CityData>.success(data: currentWeather);
     } catch (e) {
       logger.e(NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e)));
-      return ApiResult<CurrentWeather>.failure(
+      return ApiResult<CityData>.failure(
           error: NetworkExceptions.getDioException(e));
     }
   }
 
-  Future<ApiResult<DetailWeather>> fetchDetailWeatherData(
+  Future<ApiResult<WeatherData>> fetchweatherDataData(
       double lat, double lon) async {
     try {
       final Map<String, dynamic> json = await DioClient().get('onecall',
@@ -37,12 +37,12 @@ class NetworkRepository {
             'units':'metric',
             'appid': Api.apiToken
           }) as Map<String, dynamic>;
-      final DetailWeather detailWeather = DetailWeather.fromJson(json);
-      return ApiResult<DetailWeather>.success(data: detailWeather);
+      final WeatherData weatherData = WeatherData.fromJson(json);
+      return ApiResult<WeatherData>.success(data: weatherData);
     } catch (e) {
       logger.e(NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e)));
-      return ApiResult<DetailWeather>.failure(
+      return ApiResult<WeatherData>.failure(
           error: NetworkExceptions.getDioException(e));
     }
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/common/theme.dart';
 import 'package:weather_app/common/tools.dart';
-import 'package:weather_app/constants.dart';
-import 'package:weather_app/models/detail/hourly/hourly.dart';
+import 'package:weather_app/common/constants.dart';
+import 'package:weather_app/models/weather/hourly/hourly.dart';
 
 class HourTag extends StatelessWidget {
   final Hourly hourly;
@@ -14,8 +14,8 @@ class HourTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 125.0,
-      width: 70.0,
+      height: HourTagSize.height,
+      width: HourTagSize.width,
       child: Column(
         children: <Widget>[
           Padding(

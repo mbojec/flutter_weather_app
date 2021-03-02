@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart';
 import 'package:weather_app/common/style.dart';
-import 'package:weather_app/constants.dart';
+import 'package:weather_app/common/constants.dart';
 
 class Tools {
   static bool isCityNameValid({@required String value}) {
-    // Option for polish signs
+    // Option for polish strigns
     // final RegExp _alpha = RegExp(r'^[a-zA-Z-żźćńółęąśŻŹĆĄŚĘŁÓŃ ]+$');
     final RegExp _alpha = RegExp(r'^[a-zA-Z ]+$');
     return _alpha.hasMatch(value);
@@ -121,10 +120,32 @@ class Tools {
     }
     return Image.asset(iconBassetPath);
   }
+
+  static double getTempFontSize(BuildContext context){
+    final double screenWidth = MediaQuery.of(context).size.width;
+    if(screenWidth > 400.0){
+      return 112.0;
+    }else if(screenWidth > 360.0 && screenWidth < 400.0){
+      return 104.0;
+    } else {
+      return 96.0;
+    }
+  }
+
+  static double getWeatherIconSize(BuildContext context){
+    final double screenWidth = MediaQuery.of(context).size.width;
+    if(screenWidth > 400.0){
+      return 120.0;
+    }else if(screenWidth > 360.0 && screenWidth < 400.0){
+      return 112.0;
+    } else {
+      return 104.0;
+    }
+  }
 }
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1)}";
+    return '${this[0].toUpperCase()}${substring(1)}';
   }
 }

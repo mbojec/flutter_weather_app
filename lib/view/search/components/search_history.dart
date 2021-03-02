@@ -6,7 +6,7 @@ import 'package:weather_app/blocs/search_history/state_history.dart';
 import 'package:weather_app/blocs/search_weather/cubit.dart';
 import 'package:weather_app/common/style.dart';
 import 'package:weather_app/common/theme.dart';
-import 'package:weather_app/constants.dart';
+import 'package:weather_app/common/constants.dart';
 import 'package:weather_app/models/search_item/search_item.dart';
 
 class SearchHistory extends StatelessWidget {

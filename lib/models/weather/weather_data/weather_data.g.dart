@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'detail_weather.dart';
+part of 'weather_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DetailWeather _$DetailWeatherFromJson(Map<String, dynamic> json) {
-  return DetailWeather(
+WeatherData _$WeatherDataFromJson(Map<String, dynamic> json) {
+  return WeatherData(
     lat: (json['lat'] as num)?.toDouble(),
     lon: (json['lon'] as num)?.toDouble(),
     timezone: json['timezone'] as String,
@@ -30,7 +30,7 @@ DetailWeather _$DetailWeatherFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DetailWeatherToJson(DetailWeather instance) =>
+Map<String, dynamic> _$WeatherDataToJson(WeatherData instance) =>
     <String, dynamic>{
       'lat': instance.lat,
       'lon': instance.lon,

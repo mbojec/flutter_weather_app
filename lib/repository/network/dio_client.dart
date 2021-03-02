@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:weather_app/constants.dart';
+import 'package:weather_app/common/constants.dart';
 
 const int _defaultConnectTimeout = Duration.millisecondsPerMinute;
 const int _defaultReceiveTimeout = Duration.millisecondsPerMinute;

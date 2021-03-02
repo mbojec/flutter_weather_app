@@ -11,7 +11,14 @@ class Api {
 
 class Dimensions {
   static const double margin = 16.0;
+  static const double padding = 16.0;
+  static const double space = 32.0;
   static const double searchBarHeight = 40.0;
+}
+
+class HourTagSize {
+  static const double width = 70.0;
+  static const double height = 125.0;
 }
 
 enum IconColor{color, black, grey}

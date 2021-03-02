@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/common/constants.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 import 'package:weather_app/view/weather/components/daily_weather.dart';
 import 'package:weather_app/view/weather/components/detail_info.dart';
 import 'package:weather_app/view/weather/components/hour_weather.dart';
 import 'package:weather_app/view/weather/components/info.dart';
-import 'package:weather_app/view/weather/components/temp.dart';
+import 'package:weather_app/components/temp.dart';
 
 class WeatherScreenArgs {
   final String cityName;
-  final DetailWeather detailWeather;
+  final WeatherData weatherData;
 
-  WeatherScreenArgs(this.cityName, this.detailWeather);
+  WeatherScreenArgs(this.cityName, this.weatherData);
 }
 
 class WeatherScreen extends StatelessWidget {
@@ -27,21 +28,21 @@ class WeatherScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(Dimensions.padding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TemperatureSection(args.detailWeather),
-              InfoSection(args.detailWeather),
+              TemperatureSection(weatherData: args.weatherData),
+              InfoSection(args.weatherData),
               const SizedBox(
-                height: 32.0,
+                height: Dimensions.space,
               ),
-              DetailInfoSection(args.detailWeather),
-              HourWeatherSection(args.detailWeather),
+              DetailInfoSection(args.weatherData),
+              HourWeatherSection(args.weatherData),
               const SizedBox(
-                height: 32.0,
+                height: Dimensions.space,
               ),
-              DailyWeatherSection(args.detailWeather.daily)
+              DailyWeatherSection(args.weatherData.daily, args.cityName)
             ],
           ),
         ),

@@ -1,50 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:weather_app/common/theme.dart';
-import 'package:weather_app/common/tools.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/components/day_tag.dart';
+import 'package:weather_app/common/constants.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 import 'package:weather_app/view/weather/components/hour_list.dart';
 
-class HourWeatherSection extends StatefulWidget {
-  final DetailWeather detailWeather;
+class HourWeatherSection extends StatelessWidget {
+  final WeatherData weatherData;
 
-  const HourWeatherSection(this.detailWeather);
-
-  @override
-  _HourWeatherSectionState createState() => _HourWeatherSectionState();
-}
-
-class _HourWeatherSectionState extends State<HourWeatherSection> {
-  int position = 0;
+  const HourWeatherSection(this.weatherData);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const SizedBox(
-          height: 32.0,
+          height: Dimensions.space,
         ),
-        RichText(
-          textAlign: TextAlign.left,
-          text: TextSpan(
-            text: '${Tools.getWeekday(Tools.dateTimeFromSeconds(
-                        widget.detailWeather.hourly[position].dt)
-                    .weekday)} - ',
-            style: const TextStyle(fontWeight: FontWeight.bold, color: kBlack),
-            children: <TextSpan>[
-              TextSpan(
-                text: DateFormat('dd MMM').format(Tools.dateTimeFromSeconds(
-                    widget.detailWeather.hourly[position].dt)),
-                style:
-                    TextStyle(fontWeight: FontWeight.normal, color: kDarkGrey),
-              ),
-            ],
-          ),
-        ),
+        DayTag(dayInSecond: weatherData.hourly[0].dt,),
         const SizedBox(
-          height: 16.0,
+          height: Dimensions.margin,
         ),
-        HourList(widget.detailWeather.hourly),
+        HourList(weatherData.hourly),
       ],
     );
   }

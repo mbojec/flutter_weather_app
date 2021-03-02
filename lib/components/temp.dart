@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weather_app/common/tools.dart';
-import 'package:weather_app/constants.dart';
-import 'package:weather_app/models/detail/daily/daily.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/common/constants.dart';
+import 'package:weather_app/models/weather/daily/daily.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 
 class TemperatureSection extends StatelessWidget {
-  final DetailWeather detailWeather;
-  // final Daily daily;
-  // final double temp;
-  // final double feelsLikeTemp;
-  // final String weatherIcon;
+  final Daily dailyWeather;
+  final double temp;
+  final double feelsLikeTemp;
+  final String weatherIcon;
 
+  TemperatureSection({WeatherData weatherData})
+      : dailyWeather = weatherData.daily[0],
+        temp = weatherData.current.temp,
+        feelsLikeTemp = weatherData.current.feelsLike,
+        weatherIcon = weatherData.current.weather[0].icon;
 
-  TemperatureSection(this.detailWeather);
+  TemperatureSection.daily({Daily daily})
+      : dailyWeather = daily,
+        temp = daily.temp.day,
+        feelsLikeTemp = daily.feelsLike.day,
+        weatherIcon = daily.weather[0].icon;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +35,13 @@ class TemperatureSection extends StatelessWidget {
             Expanded(
                 child: Tools.textFormatTemperature(
                     context: context,
-                    temp: detailWeather.current.temp.round(),
-                    fontSize: 112.0,
+                    temp: temp.round(),
+                    fontSize: Tools.getTempFontSize(context),
                     fontWeight: FontWeight.bold)),
             SizedBox(
-                width: 120.0,
-                height: 120.0,
-                child: Tools.getWeatherIcon(
-                    detailWeather.current.weather[0].icon, IconColor.color)
+                width: Tools.getWeatherIconSize(context),
+                height: Tools.getWeatherIconSize(context),
+                child: Tools.getWeatherIcon(weatherIcon, IconColor.color)
                 // Image.asset('assets/images/weather/color/clear_sky_day.png'),
                 )
           ],
@@ -47,17 +54,14 @@ class TemperatureSection extends StatelessWidget {
           children: <Widget>[
             RichText(
               text: TextSpan(
-                text: '${detailWeather.daily[0].weather[0].description} '
-                    .capitalize(),
+                text: '${dailyWeather.weather[0].description} '.capitalize(),
                 style: Theme.of(context).textTheme.bodyText2,
                 children: <TextSpan>[
                   Tools.textSpanFormatTemperature(
-                      context: context,
-                      temp: detailWeather.daily[0].temp.day.round()),
+                      context: context, temp: dailyWeather.temp.day.round()),
                   const TextSpan(text: ' / '),
                   Tools.textSpanFormatTemperature(
-                      context: context,
-                      temp: detailWeather.daily[0].temp.night.round())
+                      context: context, temp: dailyWeather.temp.night.round())
                 ],
               ),
             ),
@@ -67,8 +71,7 @@ class TemperatureSection extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyText2,
                 children: <TextSpan>[
                   Tools.textSpanFormatTemperature(
-                      context: context,
-                      temp: detailWeather.current.feelsLike.round())
+                      context: context, temp: feelsLikeTemp.round())
                 ],
               ),
             )
