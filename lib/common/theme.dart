@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/constants.dart';
+import 'package:weather_app/common/constants.dart';
 
 // Color palette
 const Color kBlue = Color(0xFF1B88FF);

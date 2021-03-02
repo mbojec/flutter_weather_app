@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'current_weather.dart';
+part of 'city_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
-  return CurrentWeather(
+CityData _$CityDataFromJson(Map<String, dynamic> json) {
+  return CityData(
     coord: json['coord'] == null
         ? null
         : Coord.fromJson(json['coord'] as Map<String, dynamic>),
@@ -15,8 +15,7 @@ CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CurrentWeatherToJson(CurrentWeather instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CityDataToJson(CityData instance) => <String, dynamic>{
       'coord': instance.coord?.toJson(),
       'name': instance.name,
     };

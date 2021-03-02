@@ -1,10 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_app/models/detail/weather/weather.dart';
-part 'hourly.g.dart';
+import 'package:weather_app/models/weather/weather/weather.dart';
+part 'current.g.dart';
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class Hourly {
+class Current {
   int dt;
+  int sunrise;
+  int sunset;
   double temp;
   double feelsLike;
   int pressure;
@@ -16,10 +18,11 @@ class Hourly {
   double windSpeed;
   int windDeg;
   List<Weather> weather;
-  double pop;
 
-  Hourly(
+  Current(
       {this.dt,
+        this.sunrise,
+        this.sunset,
         this.temp,
         this.feelsLike,
         this.pressure,
@@ -30,11 +33,10 @@ class Hourly {
         this.visibility,
         this.windSpeed,
         this.windDeg,
-        this.weather,
-        this.pop});
+        this.weather});
 
-  factory Hourly.fromJson(Map<String, dynamic> json) =>
-      _$HourlyFromJson(json);
+  factory Current.fromJson(Map<String, dynamic> json) =>
+      _$CurrentFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HourlyToJson(this);
+  Map<String, dynamic> toJson() => _$CurrentToJson(this);
 }

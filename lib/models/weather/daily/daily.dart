@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_app/models/detail/feels_like/feels_like.dart';
-import 'package:weather_app/models/detail/temp/temp.dart';
-import 'package:weather_app/models/detail/weather/weather.dart';
+import 'package:weather_app/models/weather/feels_like/feels_like.dart';
+import 'package:weather_app/models/weather/temp/temp.dart';
+import 'package:weather_app/models/weather/weather/weather.dart';
 part 'daily.g.dart';
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)

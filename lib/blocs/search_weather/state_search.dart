@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:weather_app/models/current/current_weather/current_weather.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/models/city/city_data/city_data.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 
 part 'state_search.freezed.dart';
 
@@ -9,7 +9,7 @@ abstract class SearchState with _$SearchState {
   const factory SearchState.initial() = Initial;
 
   const factory SearchState.success(
-      CurrentWeather currentWeather, DetailWeather detailWeather) = Success;
+      CityData currentWeather, WeatherData weatherData) = Success;
 
   const factory SearchState.loading() = Loading;
 

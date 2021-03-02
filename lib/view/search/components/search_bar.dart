@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weather_app/blocs/search_weather/cubit.dart';
 import 'package:weather_app/blocs/search_weather/state_search.dart';
-import 'package:weather_app/constants.dart';
+import 'package:weather_app/common/constants.dart';
 import 'package:weather_app/common/style.dart';
 import 'package:weather_app/common/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/main.dart';
-import 'package:weather_app/models/current/current_weather/current_weather.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/models/city/city_data/city_data.dart';
 import 'package:weather_app/models/search_item/search_item.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -41,7 +40,7 @@ class _SearchBarState extends State<SearchBar> {
       listener: (BuildContext context, SearchState state) {
         state.maybeWhen(
             success:
-                (CurrentWeather currentWeather, DetailWeather detailWeather) {
+                (CityData currentWeather, WeatherData weatherData) {
               _controller.clear();
             },
             orElse: () {});

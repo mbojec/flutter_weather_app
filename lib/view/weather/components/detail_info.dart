@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weather_app/common/theme.dart';
 import 'package:weather_app/common/tools.dart';
-import 'package:weather_app/models/detail/detail_weather/detail_weather.dart';
+import 'package:weather_app/common/constants.dart';
+import 'package:weather_app/models/weather/weather_data/weather_data.dart';
 import 'package:weather_app/view/weather/components/info_detail_tab.dart';
 
 class DetailInfoSection extends StatefulWidget {
-  final DetailWeather detailWeather;
+  final WeatherData weatherData;
 
-  const DetailInfoSection(this.detailWeather);
+  const DetailInfoSection(this.weatherData);
 
   @override
   _DetailInfoSectionState createState() => _DetailInfoSectionState();
@@ -23,14 +24,15 @@ class _DetailInfoSectionState extends State<DetailInfoSection> {
       builder: (BuildContext context, BoxConstraints constraints) {
         return Card(
           child: Column(
-            children: [
+            children: <Widget>[
               if (_showDetail)
                 const SizedBox(
                   height: 24.0,
                 ),
               if (_showDetail)
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: Dimensions.margin),
                     child: Wrap(
                       runSpacing: 24.0,
                       children: <InfoDetailTab>[
@@ -38,33 +40,34 @@ class _DetailInfoSectionState extends State<DetailInfoSection> {
                           constraints: constraints,
                           imagePath: 'assets/images/weather/color/sunrise.png',
                           textContent:
-                              '${Tools.getTime(widget.detailWeather.current.sunrise)} am',
+                              '${Tools.getTime(
+                                  widget.weatherData.current.sunrise)} am',
                         ),
                         InfoDetailTab(
                           constraints: constraints,
                           imagePath: 'assets/images/weather/color/sunset.png',
                           textContent:
-                              '${Tools.getTime(widget.detailWeather.current.sunset)} pm',
+                              '${Tools.getTime(
+                                  widget.weatherData.current.sunset)} pm',
                         ),
                         InfoDetailTab(
                           constraints: constraints,
                           imagePath:
                               'assets/images/weather/color/broken_clouds.png',
-                          textContent:
-                              '${widget.detailWeather.current.clouds}%',
+                          textContent: '${widget.weatherData.current.clouds}%',
                         ),
                         InfoDetailTab(
                           constraints: constraints,
                           imagePath: 'assets/images/weather/color/wind.png',
                           textContent:
-                              '${widget.detailWeather.current.windSpeed} km/h',
+                              '${widget.weatherData.current.windSpeed} km/h',
                         ),
                         InfoDetailTab(
                           constraints: constraints,
                           imagePath:
                               'assets/images/weather/color/wind_direction.png',
                           textContent: Tools.getWindDirection(
-                            widget.detailWeather.current.windDeg.toDouble(),
+                            widget.weatherData.current.windDeg.toDouble(),
                           ),
                         ),
                         InfoDetailTab(
@@ -72,7 +75,7 @@ class _DetailInfoSectionState extends State<DetailInfoSection> {
                           imagePath:
                               'assets/images/weather/color/barometer.png',
                           textContent:
-                              '${widget.detailWeather.current.pressure} hPa',
+                              '${widget.weatherData.current.pressure} hPa',
                         ),
                       ],
                     ))
